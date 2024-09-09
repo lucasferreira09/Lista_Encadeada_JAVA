@@ -47,7 +47,8 @@ public class ListaEncadeada<T> {
     }
 
 
-    private Node<T> getNode(int index) {  // Somente a classe pode acessar esse método
+    // Somente a classe pode acessar esse método, retorna o Node
+    private Node<T> getNode(int index) {
         if (index < 0 || index >= this.tamanho) {
             throw new IndexOutOfBoundsException();
         }
@@ -83,7 +84,7 @@ public class ListaEncadeada<T> {
         }
 
 
-        Node<T> node = this.getNode(this.tamanho - 2); // Para antes do element Final da lista
+        Node<T> node = this.getNode(this.tamanho - 2); // Para antes do elemento Final da lista
 
         node.setProximo(null);
         this.nodeFinal = node;
@@ -93,15 +94,15 @@ public class ListaEncadeada<T> {
     }
 
     public void limparLista() {
-        if (this.tamanho == 0) { // Quando a lista está vazia
+        if (this.tamanho == 0) { 
             return;
         }
 
         Node<T> currentNode = this.nodeInicial;
         while (currentNode != null) {
             Node<T> nextNode = currentNode.getProximo();
-            currentNode.setElemento(null);
-            currentNode.setProximo(null);
+            currentNode.setElemento(null);   // É preciso percorrer a lista, e excluir cada elemento  
+            currentNode.setProximo(null);     // Por causa do Garbage Collector
             currentNode = nextNode;
         }
         this.nodeInicial = null;

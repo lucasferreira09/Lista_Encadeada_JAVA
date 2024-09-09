@@ -8,6 +8,7 @@ public class ListaEncadeadaTest {
         for (int i= 1; i <= 5; i++) {
             lista.adiciona(i);
         }
+    
         System.out.println(lista);
     }
 }
