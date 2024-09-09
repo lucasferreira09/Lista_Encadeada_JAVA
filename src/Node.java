@@ -9,10 +9,10 @@ public class Node<T> {
         this.proximo = null;
     }
 
-    public Node(T element) { // Construtor que adiciona o elemento atual
+    public Node(T element) { // Construtor que recebe o elemento atual
         this.elemento = element;
     }
-    public Node(T elemento, Node<T> proximo) { // Construtor que adiciona o elemento atual e o próximo elemento
+    public Node(T elemento, Node<T> proximo) { // Construtor que recebe o elemento atual e o próximo elemento
         this.elemento = elemento;
         this.proximo = proximo;
     }

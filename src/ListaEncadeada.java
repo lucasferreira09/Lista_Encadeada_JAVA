@@ -44,7 +44,6 @@ public class ListaEncadeada<T> {
             novoNode.setProximo(proximo);
             this.tamanho++;
         }
-
     }
 
 
@@ -59,6 +58,7 @@ public class ListaEncadeada<T> {
         }
         return node;
     }
+
     public int getTamanho() {
         return this.tamanho;
     }
@@ -108,16 +108,6 @@ public class ListaEncadeada<T> {
         this.nodeFinal = null;
         this.tamanho = 0;
 
-        /*
-        *****  ANOTHER VERSION OF THIS METHOD   *****
-
-        for (Node<T> current = this.startNode; current != null;) {
-            Node<T> next = current.getNext();
-            current.setElement(null);
-            current.setNext(null);
-            current = next;
-        }
-         */
     }
 
     public T getElementIndex(int index) {

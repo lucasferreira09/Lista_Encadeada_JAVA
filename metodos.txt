@@ -1,0 +1,21 @@
+
+public void limparLista() {
+    // OUTRA MANEIRA DE FAZER ESSE MÉTODO 
+
+
+    if (this.tamanho == 0) { // Quando a lista está vazia
+        return;
+    }
+
+    Node<T> currentNode = this.nodeInicial;
+    for (Node<T> current = this.startNode; current != null;) {
+        Node<T> next = current.getNext();
+        current.setElement(null);
+        current.setNext(null);
+        current = next;
+    }
+    
+    this.nodeInicial = null;
+    this.nodeFinal = null;
+    this.tamanho = 0;
+}
