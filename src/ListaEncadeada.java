@@ -93,6 +93,33 @@ public class ListaEncadeada<T> {
         return true;
     }
 
+
+    // Remove o elemento de qualquer posição
+    public void remove(int index) {
+        if (this.tamanho == 0) {
+            throw new RuntimeException("A Lista está vazia");
+        }
+        if (index < 0 || index >= this.tamanho) {
+            throw new IndexOutOfBoundsException("Índice Inválido!");
+        }
+
+
+        if (index == 0) {
+            this.removeInicio();
+        } else if (index == this.tamanho - 1) {
+            this.removeFinal();
+        } else {
+            Node<T> nodeX = this.getNode(index);
+            Node<T> nodeAtual = this.nodeInicial;
+
+            while (nodeAtual.getProximo() != nodeX) {
+                nodeAtual = nodeAtual.getProximo();
+            }
+            Node<T> proximoNode = nodeAtual.getProximo().getProximo();
+            nodeAtual.setProximo(proximoNode);
+        }
+    }
+
     public void limparLista() {
         if (this.tamanho == 0) { 
             return;
@@ -111,7 +138,9 @@ public class ListaEncadeada<T> {
 
     }
 
-    public T getElementIndex(int index) {
+
+    // Retorna o elemento, se o índice for válido
+    public T getElemento(int index) {
         if (index >= this.tamanho || index < 0) {
             throw new IndexOutOfBoundsException();
         }
@@ -120,8 +149,8 @@ public class ListaEncadeada<T> {
         return node.getElemento();
     }
 
-
-    public int buscarElemento(T elemento) {
+    // Retorna o índice do elemento, se estiver na lista
+    public int getIndex(T elemento) {
 
         int index = 0;
         Node<T> currentNode = this.nodeInicial;
@@ -146,11 +175,9 @@ public class ListaEncadeada<T> {
         StringBuilder builder = new StringBuilder("[");
         Node<T> currentNode = this.nodeInicial;
 
-        int x = 0;
-        while (x < this.tamanho - 1) { // Para antes do último Node
+        while (currentNode.getProximo() != null) {
             builder.append(currentNode.getElemento()).append(",");
             currentNode = currentNode.getProximo();
-            x++;
         }
         builder.append(currentNode.getElemento()).append("]"); // Print o elemento do último Node
 
