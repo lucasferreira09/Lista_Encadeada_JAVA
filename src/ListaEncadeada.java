@@ -60,8 +60,22 @@ public class ListaEncadeada<T> {
         return node;
     }
 
-    public int getTamanho() {
-        return this.tamanho;
+
+    // Verifica se um determinado elemento está na lista
+    // Retornando True ou False
+    public boolean contains(T elemento) {
+        if (this.tamanho == 0) {
+            return false;
+        }
+
+        Node<T> node = this.nodeInicial;
+        while (node != null) {
+            if (node.getElemento().equals(elemento)) {
+                return true;
+            }
+            node = node.getProximo();
+        }
+        return false;
     }
 
     public Boolean removeInicio() { // Retorna True se o Primeiro elemento for removido
@@ -72,8 +86,8 @@ public class ListaEncadeada<T> {
         this.nodeInicial = this.nodeInicial.getProximo();
         this.tamanho--;
 
-        if (this.tamanho == 0) {   // Depois que removi. Se o tamanho = 0
-            this.nodeFinal = null; // removemos a referência do Node Final
+        if (this.tamanho == 0) {   // Depois de removido. Se o tamanho = 0
+            this.nodeFinal = null; // Removemos a referência do Node Final
         }
         return true;
     }
@@ -93,7 +107,6 @@ public class ListaEncadeada<T> {
         return true;
     }
 
-
     // Remove o elemento de qualquer posição
     public void remove(int index) {
         if (this.tamanho == 0) {
@@ -102,7 +115,6 @@ public class ListaEncadeada<T> {
         if (index < 0 || index >= this.tamanho) {
             throw new IndexOutOfBoundsException("Índice Inválido!");
         }
-
 
         if (index == 0) {
             this.removeInicio();
@@ -138,6 +150,22 @@ public class ListaEncadeada<T> {
 
     }
 
+    // inverte toda lista
+    public void invert() {
+        if (this.tamanho == 0 || this.tamanho == 1) {
+            return;
+        }
+
+        ListaEncadeada<T> novaLista = new ListaEncadeada<>();
+        Node<T> nodeAtual = this.nodeInicial;
+
+        while (nodeAtual != null) {
+            novaLista.adiciona(0, nodeAtual.getElemento()); // Sempre irá adicionar no início da lista
+            nodeAtual = nodeAtual.getProximo();
+        }
+        this.nodeInicial = novaLista.nodeInicial;
+        this.nodeFinal = novaLista.nodeFinal;
+    }
 
     // Retorna o elemento, se o índice for válido
     public T getElemento(int index) {
@@ -166,6 +194,9 @@ public class ListaEncadeada<T> {
         return -1;
     }
 
+    public int getTamanho() {
+        return this.tamanho;
+    }
 
     public String toString() {
         if (this.tamanho == 0) {
