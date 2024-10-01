@@ -1,6 +1,6 @@
 package Lista_Encadeada_Java.src;
 
-public class ListaEncadeada<T> {
+public class ListaEncadeadaSimples<T> {
     private Node<T> nodeInicial;
     private Node<T> nodeFinal;
     private int tamanho;
@@ -156,7 +156,7 @@ public class ListaEncadeada<T> {
             return;
         }
 
-        ListaEncadeada<T> novaLista = new ListaEncadeada<>();
+        ListaEncadeadaSimples<T> novaLista = new ListaEncadeadaSimples<>();
         Node<T> nodeAtual = this.nodeInicial;
 
         while (nodeAtual != null) {

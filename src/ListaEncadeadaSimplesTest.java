@@ -1,12 +1,10 @@
 package Lista_Encadeada_Java.src;
 
-import java.util.LinkedList;
-
-public class ListaEncadeadaTest {
+public class ListaEncadeadaSimplesTest {
 
     public static void main(String[] args) {
 
-        ListaEncadeada<Integer> lista = new ListaEncadeada<>();
+        ListaEncadeadaSimples<Integer> lista = new ListaEncadeadaSimples<>();
         for (int i= 1; i <= 5; i++) {
             lista.adiciona(i);
         }
