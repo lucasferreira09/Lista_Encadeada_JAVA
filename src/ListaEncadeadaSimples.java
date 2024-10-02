@@ -5,7 +5,9 @@ public class ListaEncadeadaSimples<T> {
     private Node<T> nodeFinal;
     private int tamanho;
 
-    public void adiciona(T elemento) { // Adiciona no final
+
+    // Adiciona no final
+    public void adiciona(T elemento) {
         Node<T> node = new Node<>(elemento);
 
         if (this.tamanho == 0) {
@@ -17,7 +19,8 @@ public class ListaEncadeadaSimples<T> {
         this.tamanho++;
     }
 
-    public void adiciona(int index, T elemento) { // Adiciona em uma posição específica
+    // Adiciona em uma posição específica
+    public void adiciona(int index, T elemento) {
         if (index < 0 || index > this.tamanho) {
             throw new IndexOutOfBoundsException();
         }
@@ -60,6 +63,18 @@ public class ListaEncadeadaSimples<T> {
         return node;
     }
 
+    public void setValue(int index, T elemento) {
+        if (this.tamanho == 0) {
+            throw new RuntimeException("Lista Vazia");
+        }
+        if (index < 0 || index >= this.tamanho) {
+            throw new IndexOutOfBoundsException("Índice Inválido!");
+        }
+
+        Node<T> node = this.getNode(index);
+        node.setElemento(elemento);
+
+    }
 
     // Verifica se um determinado elemento está na lista
     // Retornando True ou False
@@ -78,7 +93,9 @@ public class ListaEncadeadaSimples<T> {
         return false;
     }
 
-    public Boolean removeInicio() { // Retorna True se o Primeiro elemento for removido
+
+    // Retorna True se o Primeiro elemento for removido
+    public Boolean removeInicio() {
         if (this.tamanho == 0) {
             throw new RuntimeException("A Lista está vazia");
         }
@@ -92,7 +109,9 @@ public class ListaEncadeadaSimples<T> {
         return true;
     }
 
-    public Boolean removeFinal() { // Retorna True se o elemento Final for removido
+
+    // Retorna True se o elemento Final for removido
+    public Boolean removeFinal() {
         if (this.tamanho == 0) {
             throw new RuntimeException("A Lista está vazia");
         }
@@ -116,19 +135,17 @@ public class ListaEncadeadaSimples<T> {
             throw new IndexOutOfBoundsException("Índice Inválido!");
         }
 
-        if (index == 0) {
+        if (index == 0) { // Remove do Início
             this.removeInicio();
-        } else if (index == this.tamanho - 1) {
+        } else if (index == this.tamanho - 1) { // Remove do Final
             this.removeFinal();
-        } else {
-            Node<T> nodeX = this.getNode(index);
-            Node<T> nodeAtual = this.nodeInicial;
+        } else { // Remove do Meio
 
-            while (nodeAtual.getProximo() != nodeX) {
-                nodeAtual = nodeAtual.getProximo();
-            }
+            Node<T> nodeAtual = this.getNode(index-1); // Para um índice antes do Node escolhido
+
             Node<T> proximoNode = nodeAtual.getProximo().getProximo();
             nodeAtual.setProximo(proximoNode);
+            this.tamanho--;
         }
     }
 

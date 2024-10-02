@@ -9,9 +9,7 @@ public class ListaEncadeadaSimplesTest {
             lista.adiciona(i);
         }
 
-        lista.invert();
-
+        lista.setValue(0,1000);
         System.out.println(lista);
-        System.out.println(lista.getTamanho());
     }
 }
