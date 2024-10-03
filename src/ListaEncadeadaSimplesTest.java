@@ -9,7 +9,7 @@ public class ListaEncadeadaSimplesTest {
             lista.adiciona(i);
         }
 
-        lista.setValue(0,1000);
+        lista.adiciona(1000);
         System.out.println(lista);
     }
 }

@@ -19,6 +19,20 @@ public class ListaEncadeadaSimples<T> {
         this.tamanho++;
     }
 
+    // Adiciona no Início da Lista
+    public void adicionaInicio(T elemento) {
+        Node<T> novoNode = new Node<>(elemento);
+
+        if (this.nodeInicial == null) {
+            this.nodeInicial = novoNode;
+            this.nodeFinal = novoNode;
+        } else {
+            novoNode.setProximo(this.nodeInicial);
+            this.nodeInicial = novoNode;
+        }
+        this.tamanho++;
+    }
+
     // Adiciona em uma posição específica
     public void adiciona(int index, T elemento) {
         if (index < 0 || index > this.tamanho) {
@@ -28,14 +42,7 @@ public class ListaEncadeadaSimples<T> {
         Node<T> novoNode = new Node<>(elemento);
 
         if (index == 0) { // Adiciona no início
-            if (this.nodeInicial == null) {
-                this.nodeInicial = novoNode;
-                this.nodeFinal = novoNode;
-            } else {
-                novoNode.setProximo(this.nodeInicial);
-                this.nodeInicial = novoNode;
-            }
-            this.tamanho++;
+            this.adicionaInicio(elemento);
 
         } else if (index == this.tamanho) { // Adiciona no Final
             this.adiciona(elemento);
@@ -63,6 +70,8 @@ public class ListaEncadeadaSimples<T> {
         return node;
     }
 
+
+    // Troca o elemento no Índice dado
     public void setValue(int index, T elemento) {
         if (this.tamanho == 0) {
             throw new RuntimeException("Lista Vazia");
@@ -167,7 +176,7 @@ public class ListaEncadeadaSimples<T> {
 
     }
 
-    // inverte toda lista
+    // Inverte toda lista
     public void invert() {
         if (this.tamanho == 0 || this.tamanho == 1) {
             return;
